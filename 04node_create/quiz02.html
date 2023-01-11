@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>input은 지우는게 아니라 display를 제어하세요</h3>
+    <h3>할일 목록 만들기</h3>
+
+    <button class="allDel" style="margin-bottom: 20px;">전체삭제하기</button><br>
+    <div>
+        <div>
+            <input type="text" placeholder="이름을 적으세요"> <button id="btn">확인</button>
+        </div>
+    </div>
+
+    <div>
+        <input type="text" placeholder="당신의 할일을 적으세요">
+        <button id="btn2">확인</button>
+        <ul class="ul">
+
+        </ul>
+    </div>
+
+
+    <script>
+        var btn = document.getElementById("btn");
+        btn.onclick = function () {
+            btn.parentElement.style.display = "none";
+            btn.parentElement.parentElement.innerHTML = btn.previousElementSibling.value + "님 안녕하세요";
+        }
+
+        //전체삭제
+        var allDel = document.querySelector(".allDel");
+        allDel.onclick = function () {
+            var list = document.querySelectorAll(".ul li");
+            if (confirm("전체삭제하시겠습니까?????")) {
+                for (var i = 0; i < list.length; i++) {
+                    list[i].remove();
+                }
+            }
+        }
+        
+        var btn2 = document.getElementById("btn2");
+        btn2.onclick = function () {
+            var li = document.createElement("li");
+            var button = document.createElement("button");
+            var buttonUp = document.createElement("button");
+            var buttonDown = document.createElement("button");
+            button.innerHTML = "더블클릭삭제";
+            buttonUp.innerHTML = "위로이동";
+            buttonDown.innerHTML = "아래로이동";
+
+            //더블클릭삭제 버튼 기능
+            button.ondblclick = function () {
+                button.parentElement.remove();
+            };
+
+            //위로이동 버튼 기능
+            buttonUp.onclick = function () {
+                var ul = document.querySelector(".ul");
+                if (buttonUp.parentElement.previousElementSibling == null) {
+                    alert("더 이상 이동할 수 없음");
+                    return;
+                }
+                alert("위로 이동");
+                ul.insertBefore(buttonUp.parentElement, buttonUp.parentElement.previousElementSibling);
+            }
+
+            //아래로이동 버튼 기능
+            buttonDown.onclick = function () {
+                var ul = document.querySelector(".ul");
+                if (buttonUp.parentElement.nextElementSibling == null) {
+                    alert("더 이상 이동할 수 없음");
+                    return;
+                }
+
+                alert("아래로 이동");
+                ul.insertBefore(buttonUp.parentElement.nextElementSibling, buttonUp.parentElement);
+            }
+
+            li.innerHTML = btn2.previousElementSibling.value;
+
+            li.appendChild(button);
+            li.appendChild(buttonUp);
+            li.appendChild(buttonDown);
+
+            btn2.nextElementSibling.appendChild(li);
+
+            btn2.previousElementSibling.value = "";
+        }
+
+
+    </script>
+
+    <hr>
+    <h3>할일 목록 만들기</h3>
+
+    <form>
+        <h3 class="todoTitle" style="display: none;"></h3>
+        <input type="text" class="todoName" placeholder="이름">
+        <button type="button" class="todoBtn">확인</button>
+        <br>
+        <input type="text" class="todo" placeholder="할일">
+        <button type="button" class="addBtn">추가</button>
+        <ul class="todoList">
+
+        </ul>
+
+    </form>
+
+    <script>
+        var todoTitle = document.querySelector(".todoTitle");
+        var todoName = document.querySelector(".todoName");
+        var todoBtn = document.querySelector(".todoBtn");
+
+        todoBtn.onclick = function () {
+            todoTitle.innerHTML = todoName.value + "님 환영합니다";
+            todoName.style.display = "none";
+            todoTitle.style.display = "block";
+
+        }
+
+        var todo = document.querySelector(".todo");
+        var todoList = document.querySelector(".todoList");
+        var addBtn = document.querySelector(".addBtn");
+        addBtn.onclick = function () {
+            var li = document.createElement("li");
+            li.innerHTML = todo.value + "<button onclick='remove(this)';>x</button>";
+            todo.value = "";
+
+            var btn = document.createElement("button");
+            btn.ondblclick = remove;
+
+            todoList.appendChild(li);
+
+        }
+        function remove(x) {
+            x.parentElement.remove();
+        }
+
+    </script>
+
+
+</body>
+
+</html>

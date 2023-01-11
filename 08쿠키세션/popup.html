@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+</head>
+<body>
+    ...내용 <br>
+    오늘하루이창열지않기<input type="checkbox" class="x">
+    <script>
+        var x = document.querySelector(".x");
+
+        x.onclick = function(){
+            var date = new Date();
+            
+            date.setHours(date.getHours()+24);
+            date.setHours(0);
+            date.setMinutes(0);
+            date.setSeconds(0);
+            console.log(date);
+            //쿠키
+            document.cookie = "mainPopup="+x.value+"; path=/; expires="+date.toString();
+            window.close();
+
+        }
+
+
+
+
+    </script>
+</body>
+</html>

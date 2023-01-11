@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/kakao.min.js">
+
+    </script>
+</head>
+
+<body>
+    <a id="kakao-login-btn" href="javascript:loginWithKakao()">
+        <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222" alt="카카오 로그인 버튼" />
+    </a>
+
+
+    <script>
+        //1
+        Kakao.init('a6b11a7f59b841a4a95638b2e6fa481c');
+        console.log(Kakao.isInitialized());
+
+        //2
+        function loginWithKakao() {
+            Kakao.Auth.authorize({
+                redirectUri: 'http://127.0.0.1:5501/09AJAX/index05(kakaoLogin).html',
+            });
+        }
+
+        //3.인가코드 받아오기
+        var URLSearch = new URLSearchParams(location.search);
+        console.log(URLSearch.get("code"));
+        if (URLSearch.get("code") != null) {
+            ajax();
+        }
+
+        //4.토큰발급요청(POST방식, 폼형식)
+        function ajax() {
+
+            //JSON형식의 POST요청
+            // var data = {
+            //     grant_type:"authorization_code",
+            //     client_id:"04927229693df181885b56e2db70787a",
+            //     redirect_uri:"http://127.0.0.1:5501/09AJAX/index05(kakaoLogin).html",
+            //     code:URLSearch.get("code")
+            // }
+
+            // fetch("https://kauth.kakao.com/oauth/token",{
+            //     method: "POST",
+            //     headers: {"Content-Type" : "application/json"
+            // },
+            //     body: JSON.stringify(data)
+            // })
+            // .then(function(res){
+            //     console.log(res);
+            // })
+
+            //Form형식의 POST요청
+            //formData객체 이용 or 문자열
+            var url = "http://127.0.0.1:5501/09AJAX/index05(kakaoLogin).html";
+            var data = "grant_type=authorization_code" +
+                "&client_id=04927229693df181885b56e2db70787a" +
+                "&redirect_uri=" + url +
+                "&code=" + URLSearch.get("code");
+
+            fetch("https://kauth.kakao.com/oauth/token", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+                },
+                body: data
+            })
+                .then(function (res) {
+                    return res.json();
+                })
+                .then(function (data) {
+                    console.log(data);
+                    //예를들어 sessionStorage or cookiefh wjwkd
+                    sessionStorage.setItem("access_token", data.access_token);
+
+                    //카카오API함수
+                    Kakao.Auth.setAccessToken(data.access_token);
+
+                    //토큰을 발급받고 사용자정보 받아오기 호출
+                    requestUserInfo();
+                })
+        }
+
+        //5.사용자정보 받아오기
+        function requestUserInfo() {
+            //카카오 API내장함수 호출
+            Kakao.API.request({
+                url: '/v2/user/me',
+            })
+                .then(function (response) {
+                    console.log(response);
+                    console.log(response.kakao_account.email); //사용자 이메일
+                    console.log(response.kakao_account.profile.nickname); //사용자 닉네임
+                    console.log(response.kakao_account.profile.profile_image_url); //사용자 닉네임
+                    //이 정보를 가지고, 우리데이터베이스에서 조홰ㅣ or 로그인 하는 작업으로 연결
+                    //처리하는 페이지로...
+                    sessionStorage.setItem("info",JSON.stringify({id:response.kakao_account.email,
+                                                                nick:response.kakao_account.profile.nickname}));
+                    location.href = "index06.html";
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+
+    </script>
+
+
+</body>
+
+</html>

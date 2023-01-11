@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+
+    <div>
+        <!-- 메뉴 바 -->
+        <nav>
+            <ul class="menubar">
+                <li data-id="#menu3">game1</li>
+                <li data-id="#menu2">game2</li>
+                <li data-id="#menu3">game3</li>
+                <li data-id="#menu4">game4</li>
+            </ul>
+        </nav>
+
+        <!-- 메인화면 container -->
+
+        <div class="container menu" id="menu2">
+
+            <style>
+                #myCanvas {
+                    background: #eee;
+                    display: block;
+                    margin: 0 auto;
+                }
+
+                .btn button {
+                    width: 150px;
+                    height: 30px;
+                    font-size: large;
+                }
+            </style>
+            <div>
+                <div class="btn">
+                    <button>Normal Mode</button> <br>
+                    <button>Hard Mode</button>
+                </div>
+            </div>
+            <canvas id="myCanvas" width="700" height="400"></canvas>
+            <script src="01game.js"></script>
+
+        </div>
+
+    </div>
+
+    <script src="./index.js"></script>
+
+</body>
+
+</html>

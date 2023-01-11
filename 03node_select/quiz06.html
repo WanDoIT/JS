@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input:focus{
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <h3>focus - 인풋에 focus들어갈 때 동작, blur - 인풋에 focus가 떠났을 때 동작</h3>
+    <input type="text" class="id" placeholder="4자 이상">
+    <div class="msg"><br></div>
+    <input type="password" class="pw" placeholder="8자 이상">
+    <div class="msg2"> </div>
+    <script>
+        var id = document.querySelector(".id");
+        var pw = document.querySelector(".pw");
+        var msg = document.querySelector(".msg");
+        var msg2 = document.querySelector(".msg2");
+
+        id.onfocus = function(){
+            id.style.border = "1px solid blue";
+        }
+
+        id.onblur = function(){
+            if(id.value.length < 4){
+                msg.innerHTML = "아이디4글자 이상이거든요???????";
+                id.style.border = "3px solid red";
+            } else{
+                id.style.border = "3px solid green";
+                msg.innerHTML = "<br>";
+            }
+        }
+        pw.onblur = function(){
+            if(pw.value.length < 8){
+                msg2.innerHTML = "비밀번호9글자 이상이거든요????????";
+                pw.style.border = "3px solid red";
+            } else{
+                pw.style.border = "3px solid green";
+
+            }
+        }
+
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>

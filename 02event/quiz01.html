@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select id="sel">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+    </select>
+    <input type="text" onchange="aaa();">
+
+    <div id="db">db클릭 이벤트</div>
+
+    <script>
+        //위에 있는 select와 input에 원하는 방법으로 change 걸어보기
+        var sel = document.getElementById("sel");
+        sel.onchange = function(){
+    
+            console.log("변경됨");
+        }
+        function aaa(){
+           aaa.innerHTML = 'hello'; 
+            console.log("변경됨");
+
+        }
+
+        //div에는 dbclick이벤트 걸어보기
+        var b = document.getElementById("db");
+        b.ondblclick = function(){
+            console.log("더블클릭");
+            b.innerHTML = 'hello';
+        }
+    </script>
+
+
+</body>
+</html>

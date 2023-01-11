@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>메인화면</h3>
+    <script>
+        console.log(document.cookie);
+        if (document.cookie.indexOf("mainPopup") == -1) {
+            window.onload = function () {
+                window.open("popup.html", "popup", "width=500px,height=300px, left=100px,top=100px"); //open("띄울창","별칭","옵션")
+            }
+        }
+    </script>
+</body>
+
+</html>

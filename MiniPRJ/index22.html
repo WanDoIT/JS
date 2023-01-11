@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+
+    <div>
+        <!-- 메뉴 바 -->
+        <nav>
+            <ul class="menubar">
+                <li data-id="#menu1">game1</li>
+                <li data-id="#menu2">game2</li>
+                <li data-id="#menu3">game3</li>
+                <li data-id="#menu4">game4</li>
+            </ul>
+        </nav>
+
+        <!-- 메인화면 container -->
+        <div class="container menu active" id="menu1">
+            <h2>1</h2>
+        </div>
+
+        <div class="container menu" id="menu2">
+            <h2>2</h2>
+        </div>
+
+        <div class="container menu" id="menu3">
+            <style>
+                * {
+                    text-decoration: none;
+                }
+
+                #myCanvas {
+                    background: #eee;
+                    display: block;
+                    margin: 0 auto;
+                }
+
+                .btn button {
+                    width: 150px;
+                    height: 40px;
+                    font-size: large;
+                    margin-bottom: 20px;
+                    background-color: black;
+                    color: white;
+
+                }
+
+                .btn1 {}
+
+                .btn2 {}
+
+                .btnclicked {
+                    -webkit-filter: drop-shadow(0 0 0.2rem hsla(var(--neon-pink), 0.4)) drop-shadow(0.5rem 0.5rem 0.2rem hsla(var(--neon-pink), 0.6)) drop-shadow(-0.5rem 0.5rem 0.2rem hsla(var(--neon-pink), 0.6)) drop-shadow(0.5rem -0.5rem 0.2rem hsla(var(--neon-pink), 0.6)) drop-shadow(-0.5rem -0.5rem 0.2rem hsla(var(--neon-pink), 0.6));
+                    filter: drop-shadow(0 0 0.2rem hsla(var(--neon-pink), 0.4)) drop-shadow(0.5rem 0.5rem 0.2rem hsla(var(--neon-pink), 0.6)) drop-shadow(-0.5rem 0.5rem 0.2rem hsla(var(--neon-pink), 0.6)) drop-shadow(0.5rem -0.5rem 0.2rem hsla(var(--neon-pink), 0.6)) drop-shadow(-0.5rem -0.5rem 0.2rem hsla(var(--neon-pink), 0.6));
+                }
+            </style>
+            <div>
+                <div class="btn">
+                    <button class="btn1 btnclicked"> Normal Mode</button><br>
+                    <button class="btn2"> Hard Mode</button>
+                </div>
+            </div>
+            <canvas id="myCanvas" width="700" height="450"></canvas>
+            <script src="BricksBreaker.js"></script>
+
+        </div>
+
+        <div class="container menu" id="menu4">
+            <h2>4</h2>
+        </div>
+    </div>
+
+    <script src="./index.js"></script>
+
+</body>
+
+</html>

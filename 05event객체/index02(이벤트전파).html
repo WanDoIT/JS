@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>이벤트 전파 특성 활용하기</h3>
+    <ul class="parent">
+        <li class="item">1.홍길동 </li>
+        <li class="item">2.세종대왕 </li>
+        <li class="item">3.이순신 </li>
+        <li class="item">4.강감찬 </li>
+        <li class="item">5.둘리 </li>
+    </ul>
+    
+    선택한 태그의 값 :
+    <p class="result"></p>
+
+    <script>
+        var result = document.querySelector(".result");
+        
+        //부모에 이벤트를 걸면 자식한테 이벤트가 전파됩니다.
+        var parent = document.querySelector(".parent");
+        parent.onclick = function(e){
+            // result.innerHTML = this.innerHTML; //ul
+            // console.log("이벤트동작");
+            
+            //이벤트객체 - 이벤트함수에 첫번째 매개변수로 자동전달됩니다.
+            // console.log(event.target); //이벤트가 동작된 실제 태그
+            // console.log(event.currentTarget); //실제이벤트가 걸려있는태그
+
+            if(e.target.tagName != "LI") return;
+                
+            result.innerHTML = e.target.innerHTML;
+        }
+    
+
+    </script>
+
+</body>
+</html>
